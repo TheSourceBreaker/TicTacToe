@@ -2,52 +2,78 @@
 
 
 
-void Process(int *playerChoice, int **board, int boardSize, int Input)
+void Process(int *playerChoice, int **board, int boardSize, int Input, bool *flipToTrue, bool *flipToFalse)
 {
-	/*if (board[(*playerChoice - 1) / boardSize][(*playerChoice - 1) % boardSize] == 1 || board[(*playerChoice - 1) / boardSize][(*playerChoice - 1) % boardSize] == 2)
-	{
-		cout << "processtest" << endl;
-	}
-	else
-	{
-	}*/
-		board[(*playerChoice - 1) / boardSize][(*playerChoice - 1) % boardSize] = Input;
+	board[(*playerChoice - 1) / boardSize][(*playerChoice - 1) % boardSize] = Input;
+
+	*flipToTrue = true;
+	*flipToFalse = false;
 }
 
-void Victory(int *playerChoice, int **board, int boardSize, int Input)
+void Victory(int *playerChoice, int **board, int boardSize, int Input, bool *playerWin)
 {
 	int total = 0;
-	for (int i = 0; i < boardSize; i++)
+	int win = 0;
+	int t = (boardSize - 1);
+
+	for (int i = 0; i < boardSize; i++) //This checks the left to right rows
 	{
 		for (int o = 0; o < boardSize; o++)
 		{
 			if (board[i][o] == Input)
-			{
 				total++;
-				//cout << "Test Victory";
-			}
 		}
+		if (total == boardSize)
+		{
+			*playerWin = true;
+			break;
+		}
+		else
+			total = 0;
 	}
+	//--------------------------------
 
-	for (int y = 0; y < boardSize; y++)
+	for (int o = 0; o < boardSize; o++)//This checks the top to down rows
 	{
-		
-		if (board[y][0] == Input)
+		for (int i = 0; i < boardSize; i++)
+		{
+			if (board[i][o] == Input)
+				total++;
+		}
+		if (total == boardSize)
+		{
+			*playerWin = true;
+			break;
+		}
+		else
+			total = 0;
+	}
+	//--------------------------------
+
+	for (int y = 0; y < boardSize; y++) //This checks diagonally from the top left to bottom right
+	{
+		if (board[y][y] == Input)
 		{
 			total++;
-			//cout << "Test Victory";
 		}
-		
 	}
+		if (total == boardSize)
+			*playerWin = true;
+	else
+			total = 0;
+	//--------------------------------
 
-	for (int b = 0; b < boardSize; b++)
+	for (int b = 0; b < boardSize; b++) //This checks diagonally from the top right to bottom left
 	{
-		
-		if (board[0][b] == Input)
+		if (board[b][t] == Input)
 		{
 			total++;
-			//cout << "Test Victory";
 		}
-		
+		t--;
 	}
+	if (total == boardSize)
+		*playerWin = true;
+	else
+		total = 0;
+	//--------------------------------
 }
