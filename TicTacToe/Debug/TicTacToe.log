@@ -1,6 +1,4 @@
 ﻿  Source.cpp
-e:\000000000 seattle office\visualstudiosolutionsc++\assessment3-tictactoe\tictactoe\tictactoe\source.cpp(76): warning C4804: '<=': unsafe use of type 'bool' in operation
-e:\000000000 seattle office\visualstudiosolutionsc++\assessment3-tictactoe\tictactoe\tictactoe\source.cpp(104): warning C4804: '<=': unsafe use of type 'bool' in operation
   Turns.cpp
   Generating Code...
   TicTacToe.vcxproj -> E:\000000000 Seattle Office\VisualStudioSolutionsC++\Assessment3-TicTacToe\TicTacToe\Debug\TicTacToe.exe
